@@ -1,4 +1,5 @@
-import { Container, Carousel } from "../components/index";
+import Container from "../components/Container";
+import Carousel from "../components/Carousel";
 import { motion } from "framer-motion";
 
 const Projects = () => {

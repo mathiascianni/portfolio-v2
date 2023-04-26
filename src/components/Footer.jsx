@@ -1,4 +1,5 @@
-import { Container, HoverButton } from "./index";
+import Container from "./Container";
+import HoverButton from "./HoverButton";
 import IonIcon from "@reacticons/ionicons";
 
 const Footer = () => {
@@ -9,7 +10,7 @@ const Footer = () => {
                     <div>
                         <p className="mb-4"><span className="font-bold uppercase">Mathias Cianni</span> &mdash; Desarrollador web FrontEnd. Buenos Aires, Argentina.</p>
                         <div className="invert">
-                            <HoverButton to="/media/Cianni_Mathias_Curriculum.pdf" download="Cianni_Mathias_Curriculum" >
+                            <HoverButton to="/media/Cianni_Mathias_Curriculum.pdf">
                                 <span>Descargar CV</span>
                             </HoverButton>
                         </div>

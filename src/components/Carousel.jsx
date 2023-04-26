@@ -78,6 +78,7 @@ const Carousel = () => {
     }
 
     return (
+        <>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
             <div className="flex relative">
                 <button onClick={handlePrev} className="absolute top-0 left-0 z-[1] w-[50%] h-full btnL text-6xl flex items-center justify-start"><span className="md:hidden text-white"><IonIcon name="chevron-back-circle-sharp" /></span></button>
@@ -105,6 +106,7 @@ const Carousel = () => {
                 </motion.a>
             </div>
         </motion.div>
+        </>
     );
 }
 

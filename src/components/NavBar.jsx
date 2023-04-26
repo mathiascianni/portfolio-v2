@@ -1,4 +1,3 @@
-import MatnaLogo from "/media/matna-logo.svg";
 import IonIcon from "@reacticons/ionicons";
 import { useState, useEffect } from "react";
 
@@ -23,7 +22,7 @@ const NavBar = () => {
 
     return (
         <nav className={`${isScrolled ? "bg-zinc-900" : "bg-transparent"} transition-color duration-200 font-header flex justify-between items-center fixed w-full px-8 md:px-32 py-4 md:py-8 text-white z-[2]`}>
-            <a href="#" onClick={() => setMenu(false)} className="max-w-[30px]"><img src={MatnaLogo} alt="Logo personal de Mathias Cianni" /></a>
+            <a href="#" onClick={() => setMenu(false)} className="max-w-[30px]"><img src="/media/matna-logo.svg" alt="Logo personal de Mathias Cianni" /></a>
             <button onClick={() => setMenu(!menu)} className="block md:hidden text-4xl flex items-center justify-center"><IonIcon name="menu-outline" /></button>
             <ul className="hidden md:flex gap-4">
                 <li>

@@ -1,4 +1,5 @@
-import { Container, HoverButton } from "../components";
+import Container from "../components/Container";
+import HoverButton from "../components/HoverButton";
 import IonIcon from "@reacticons/ionicons";
 import { motion } from "framer-motion";
 

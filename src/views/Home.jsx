@@ -1,4 +1,4 @@
-import { Container } from "../components/index";
+import Container from "../components/Container";
 import { motion } from "framer-motion";
 
 const Home = () => {
@@ -53,7 +53,6 @@ const Home = () => {
                     </motion.div>
                 </Container>
             </div>
-
         </>
     );
 }
