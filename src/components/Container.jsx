@@ -1,6 +1,6 @@
-const Container = ({ children }) => {
+const Container = ({ children, id }) => {
     return (
-        <section className="md:container md:px-32 mx-auto">
+        <section className="px-2 md:container md:px-8 lg:px-32 mx-auto" id={id}>
             {children}
         </section>
     );

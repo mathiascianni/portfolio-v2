@@ -1,5 +1,5 @@
-import { Home, Projects } from "./views/index";
-import { NavBar, Cursor } from "./components";
+import { About, Contact, Home, Projects, Talents } from "./views/index";
+import { NavBar, Cursor, Footer } from "./components";
 
 const App = () => {
     return (
@@ -8,8 +8,12 @@ const App = () => {
             <NavBar />
             <main>
                 <Home />
+                <About />
                 <Projects />
+                <Talents />
+                <Contact />
             </main>
+            <Footer />
         </>
     );
 }

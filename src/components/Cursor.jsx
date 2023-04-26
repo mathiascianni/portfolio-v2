@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import IonIcon from '@reacticons/ionicons';
 
 const Cursor = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [hidden, setHidden] = useState(false);
     const [click, setClick] = useState(false);
     const [linkHover, setLinkHover] = useState(false);
+    const [icon, setIcon] = useState("");
 
     useEffect(() => {
         const addEventListeners = () => {
@@ -52,6 +54,14 @@ const Cursor = () => {
                 el.addEventListener('mouseover', () => setLinkHover(true));
                 el.addEventListener('mouseout', () => setLinkHover(false));
             });
+            document.querySelectorAll('.btnR').forEach((el) => {
+                el.addEventListener('mouseover', () => setIcon("chevron-forward-circle-sharp"));
+                el.addEventListener('mouseout', () => setIcon(""));
+            });
+            document.querySelectorAll('.btnL').forEach((el) => {
+                el.addEventListener('mouseover', () => setIcon("chevron-back-circle-sharp"));
+                el.addEventListener('mouseout', () => setIcon(""));
+            });
         };
 
         addEventListeners();
@@ -60,9 +70,9 @@ const Cursor = () => {
     }, []);
 
     return (
-        <div className={`w-4 h-4 backdrop-invert transition-[transform] duration-500 bg-transparent rounded-full fixed pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[999] ${hidden ? "opacity-0" : ""} ${click ? "scale-[1.5]" : ""} ${linkHover ? "scale-[4]" : ""}`} style={{
+        <div className={`w-4 h-4 backdrop-invert transition-[transform] flex items-center justify-center text-xs duration-500 bg-transparent rounded-full fixed pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[999] ${hidden ? "opacity-0" : ""} ${click ? "scale-[1.5]" : ""} ${linkHover ? "scale-[4]" : ""}`} style={{
             left: `${position.x}px`, top: `${position.y}px`,
-        }}></div>
+        }}><div className=" flex items-center justify-center text-black"><IonIcon name={icon} /></div></div>
     );
 }
 

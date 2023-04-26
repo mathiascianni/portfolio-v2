@@ -1,15 +1,43 @@
-import { Container, Carousel } from "../components/index"
+import { Container, Carousel } from "../components/index";
+import { motion } from "framer-motion";
 
 const Projects = () => {
+    const containerVariants = {
+        hidden: {
+            opacity: 0,
+            y: "-100px"
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                delayChildren: 0.3,
+                staggerChildren: 0.2
+            }
+        }
+    }
+
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            y: "-100px"
+        },
+        visible: {
+            opacity: 1,
+            y: 0
+        }
+    }
+
     return (
-        <Container>
-            <div className="border-y my-8 p-8 font-header text-center uppercase">
-                <p className="text-light mb-4">Explorá</p>
-                <div className="flex items-center justify-center gap-4 text-4xl">
-                    <h2 className="text-4xl font-bold">Mis proyectos</h2>
-                    <p>- Web development</p>
+        <Container id="projects">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants} className="border-y my-8 p-8 font-header text-center uppercase">
+                <motion.p variants={itemVariants} className="mb-4">Explorá</motion.p>
+                <div className="flex flex-col md:flex-row items-center justify-center md:gap-4 text-2xl md:text-4xl">
+                    <motion.h2 variants={itemVariants} className="font-bold text-neutral-900">Mis proyectos</motion.h2>
+                    <motion.span variants={itemVariants} className="hidden md:inline-block">&mdash;</motion.span>
+                    <motion.p variants={itemVariants}>Web development</motion.p>
                 </div>
-            </div>
+            </motion.div>
             <Carousel />
         </Container>
     );
