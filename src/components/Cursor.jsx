@@ -7,12 +7,15 @@ const Cursor = () => {
     const [click, setClick] = useState(false);
     const [linkHover, setLinkHover] = useState(false);
     const [icon, setIcon] = useState("");
-    const isMobile = window.matchMedia('(max-width: 768px)');
-
+    const [cursor, setCursor] = useState(null);
+    
     useEffect(() => {
+        const isMobile = window.matchMedia('(max-width: 768px)');
 
         console.log(isMobile.matches);
         if (!isMobile.matches) {
+            setCursor(false);
+
             const addEventListeners = () => {
                 document.addEventListener('mousemove', mMove);
                 document.addEventListener('mouseenter', mEnter);
@@ -71,11 +74,13 @@ const Cursor = () => {
             addEventListeners();
             addLinkEvents();
             return () => removeEventListeners();
+        } else {
+            setCursor(true);
         }
     }, []);
 
     return (
-        <div className={`w-4 h-4 backdrop-invert ${isMobile? "hidden" : "flex"} transition-[transform] items-center justify-center text-xs duration-500 bg-transparent rounded-full fixed pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[999] ${hidden ? "opacity-0" : ""} ${click ? "scale-[1.5]" : ""} ${linkHover ? "scale-[4]" : ""}`} style={{
+        <div className={`w-4 h-4 backdrop-invert ${cursor? "hidden" : "flex"} transition-[transform] items-center justify-center text-xs duration-500 bg-transparent rounded-full fixed pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[999] ${hidden ? "opacity-0" : ""} ${click ? "scale-[1.5]" : ""} ${linkHover ? "scale-[4]" : ""}`} style={{
             left: `${position.x}px`, top: `${position.y}px`,
         }}><div className=" flex items-center justify-center text-black"><IonIcon name={icon} /></div></div>
     );
