@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState } from "react";
 import IonIcon from "@reacticons/ionicons";
 import { motion } from "framer-motion";
