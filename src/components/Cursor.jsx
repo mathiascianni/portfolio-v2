@@ -7,70 +7,75 @@ const Cursor = () => {
     const [click, setClick] = useState(false);
     const [linkHover, setLinkHover] = useState(false);
     const [icon, setIcon] = useState("");
+    const isMobile = window.matchMedia('(max-width: 768px)');
 
     useEffect(() => {
-        const addEventListeners = () => {
-            document.addEventListener('mousemove', mMove);
-            document.addEventListener('mouseenter', mEnter);
-            document.addEventListener('mouseleave', mLeave);
-            document.addEventListener('mousedown', mDown);
-            document.addEventListener('mouseup', mUp);
-        };
 
-        const removeEventListeners = () => {
-            document.removeEventListener('mousemove', mMove);
-            document.removeEventListener('mouseenter', mEnter);
-            document.removeEventListener('mouseleave', mLeave);
-            document.removeEventListener('mousedown', mDown);
-            document.removeEventListener('mouseup', mUp);
-        };
+        console.log(isMobile.matches);
+        if (!isMobile.matches) {
+            const addEventListeners = () => {
+                document.addEventListener('mousemove', mMove);
+                document.addEventListener('mouseenter', mEnter);
+                document.addEventListener('mouseleave', mLeave);
+                document.addEventListener('mousedown', mDown);
+                document.addEventListener('mouseup', mUp);
+            };
 
-        const mDown = () => {
-            setClick(true);
-        };
+            const removeEventListeners = () => {
+                document.removeEventListener('mousemove', mMove);
+                document.removeEventListener('mouseenter', mEnter);
+                document.removeEventListener('mouseleave', mLeave);
+                document.removeEventListener('mousedown', mDown);
+                document.removeEventListener('mouseup', mUp);
+            };
 
-        const mUp = () => {
-            setClick(false);
-        };
+            const mDown = () => {
+                setClick(true);
+            };
 
-        const mMove = (el) => {
-            setPosition({ x: el.clientX, y: el.clientY });
-        };
+            const mUp = () => {
+                setClick(false);
+            };
 
-        const mLeave = () => {
-            setHidden(true);
-        };
+            const mMove = (el) => {
+                setPosition({ x: el.clientX, y: el.clientY });
+            };
 
-        const mEnter = () => {
-            setHidden(false);
-        };
+            const mLeave = () => {
+                setHidden(true);
+            };
 
-        const addLinkEvents = () => {
-            document.querySelectorAll('a').forEach((el) => {
-                el.addEventListener('mouseover', () => setLinkHover(true));
-                el.addEventListener('mouseout', () => setLinkHover(false));
-            });
-            document.querySelectorAll('button').forEach((el) => {
-                el.addEventListener('mouseover', () => setLinkHover(true));
-                el.addEventListener('mouseout', () => setLinkHover(false));
-            });
-            document.querySelectorAll('.btnR').forEach((el) => {
-                el.addEventListener('mouseover', () => setIcon("chevron-forward-circle-sharp"));
-                el.addEventListener('mouseout', () => setIcon(""));
-            });
-            document.querySelectorAll('.btnL').forEach((el) => {
-                el.addEventListener('mouseover', () => setIcon("chevron-back-circle-sharp"));
-                el.addEventListener('mouseout', () => setIcon(""));
-            });
-        };
+            const mEnter = () => {
+                setHidden(false);
+            };
 
-        addEventListeners();
-        addLinkEvents();
-        return () => removeEventListeners();
+            const addLinkEvents = () => {
+                document.querySelectorAll('a').forEach((el) => {
+                    el.addEventListener('mouseover', () => setLinkHover(true));
+                    el.addEventListener('mouseout', () => setLinkHover(false));
+                });
+                document.querySelectorAll('button').forEach((el) => {
+                    el.addEventListener('mouseover', () => setLinkHover(true));
+                    el.addEventListener('mouseout', () => setLinkHover(false));
+                });
+                document.querySelectorAll('.btnR').forEach((el) => {
+                    el.addEventListener('mouseover', () => setIcon("chevron-forward-circle-sharp"));
+                    el.addEventListener('mouseout', () => setIcon(""));
+                });
+                document.querySelectorAll('.btnL').forEach((el) => {
+                    el.addEventListener('mouseover', () => setIcon("chevron-back-circle-sharp"));
+                    el.addEventListener('mouseout', () => setIcon(""));
+                });
+            };
+
+            addEventListeners();
+            addLinkEvents();
+            return () => removeEventListeners();
+        }
     }, []);
 
     return (
-        <div className={`w-4 h-4 backdrop-invert transition-[transform] flex items-center justify-center text-xs duration-500 bg-transparent rounded-full fixed pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[999] ${hidden ? "opacity-0" : ""} ${click ? "scale-[1.5]" : ""} ${linkHover ? "scale-[4]" : ""}`} style={{
+        <div className={`w-4 h-4 backdrop-invert ${isMobile? "hidden" : "flex"} transition-[transform] items-center justify-center text-xs duration-500 bg-transparent rounded-full fixed pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[999] ${hidden ? "opacity-0" : ""} ${click ? "scale-[1.5]" : ""} ${linkHover ? "scale-[4]" : ""}`} style={{
             left: `${position.x}px`, top: `${position.y}px`,
         }}><div className=" flex items-center justify-center text-black"><IonIcon name={icon} /></div></div>
     );
