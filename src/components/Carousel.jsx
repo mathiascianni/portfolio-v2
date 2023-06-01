@@ -23,6 +23,18 @@ const Carousel = () => {
 
     const images = [
         {
+            src: "/media/pokedb.jpg",
+            alt: "screenshot de la web PokeDB",
+            to: "https://pokedb-self.vercel.app/",
+            usedTechs: [
+                <i className="text-4xl devicon-html5-plain"></i>,
+                <i className="text-4xl devicon-javascript-plain"></i>,
+                <i className="text-4xl devicon-tailwindcss-plain"></i>,
+                <i className="text-4xl devicon-react-plain"></i>,
+            ],
+            title: "PokeDB"
+        },
+        {
             src: "/media/gpt.jpg",
             alt: "screenshot de la landing page de ChatGPT",
             to: "https://chatgpt-landing.vercel.app/",
