@@ -11,8 +11,6 @@ const Cursor = () => {
     
     useEffect(() => {
         const isMobile = window.matchMedia('(max-width: 768px)');
-
-        console.log(isMobile.matches);
         if (!isMobile.matches) {
             setCursor(false);
 
